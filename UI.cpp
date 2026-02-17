@@ -1,6 +1,6 @@
 #include "UI.h"
 #include "data.h"
-#include "Algorithm.h" // ต้องเรียก processTaskPriority
+#include "Algorithm.h" // รอไฟล์algorithm
 
 void printScheduleTable() {
     cout << "\n--- ตารางเวลาภาพรวม (Overview) ---\n";
