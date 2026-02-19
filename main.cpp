@@ -28,3 +28,21 @@ int main() {
         t.remainingMinutes = (int)(hours * 60); // แปลงชั่วโมงเป็นนาที
         taskList.push_back(t);
     }
+
+while (true) { // loop ไว้ทำฟังก์ชั่นต่างๆ
+        displayToDoList();
+        cout << "\n[ MENU ]\n1. ดูตารางเวลา\n0. ออก\nเลือก: ";
+        int choice; cin >> choice;
+
+        if (choice == 1) { // สร้างตารางเวลา
+            printScheduleTable(); // ดึงจาก UI
+            cout << "\nกด Enter เพื่อกลับเมนูหลัก..."; cin.ignore(1000,'\n');
+            cin.get();
+        }
+        else if (choice == 0) break;
+    }
+    return 0;
+}
+
+
+
