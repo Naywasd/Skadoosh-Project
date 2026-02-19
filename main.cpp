@@ -18,3 +18,14 @@ int main() {
             }
         }
     }
+
+    
+    cout << "\n=== เพิ่มงาน (Tasks) ===\n";
+    int tCount; cout << "จำนวนงาน: "; cin >> tCount;
+    for(int i=0; i<tCount; i++) {
+        Task t; double hours;
+        cout << "ชื่อ ชม.ที่ใช้ วันส่ง เวลาส่ง(ชม นาที): ";
+        cin >> t.name >> hours >> t.deadlineDay >> t.deadlineHour >> t.deadlineMinute; // รับชื่อ เวลา และเดดไลน์ ของงาน
+        t.remainingMinutes = (int)(hours * 60); // แปลงชั่วโมงเป็นนาที
+        taskList.push_back(t);
+    }
