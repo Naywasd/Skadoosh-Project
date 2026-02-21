@@ -1,3 +1,4 @@
+
 #include "Backend.h"
 #include "Data.h" // รอไอ่นายเขียน
 
@@ -40,3 +41,4 @@ int getNetFreeMinutes  (int dDay, int dHour, int dMinute) {  // นับเว�
     return freeCount;
 }
   
+

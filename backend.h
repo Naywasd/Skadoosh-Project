@@ -10,3 +10,11 @@ void fillSchedule(int dIdx, string name, int sH, int sM, int eH, int eM);
 int getNetFreeMinutes(int dDay, int dHour, int dMinute);
 
 #endif
+int toMinutes(int h, int m); // (ชม,นาที)
+void fillSchedule(int dIdx, string name, int sH, int sM, int eH, int eM); // พาราที่ใช้ใส่ตราง
+int getNetFreeMinutes(int dDay, int dHour, int dMinute);
+
+
+#endif
+
+//ฝากเช็คด้วยเด้อ
