@@ -1,5 +1,5 @@
-#include "Data.h"
-#include "Backend.h"
+#include "data.h"
+#include "backend.h"
 #include "UI.h"
 
 int main() {
@@ -30,7 +30,7 @@ int main() {
 
 while (true) { // loop ไว้ทำฟังก์ชั่นต่างๆ
         displayToDoList();
-        cout << "\n[ MENU ]\n1. ดูตารางเวลา\n2. เพิ่มงานใหม่\n3. เพิ่มธุระพิเศษ\n0. ออก\nเลือก: ";
+        cout << "\n[ MENU ]\n1. ดูตารางเวลา\n2. เพิ่มงานใหม่\n3. เพิ่มธุระพิเศษ\n4. แจ้งงานเสร็จ\n5. อัปเดตเวลาปัจจุบัน\n0. ออก\nเลือก: ";
         int choice; cin >> choice;
 
         if (choice == 1) { // สร้างตารางเวลา
@@ -48,6 +48,15 @@ while (true) { // loop ไว้ทำฟังก์ชั่นต่างๆ
             string n; int d, sH, sM, eH, eM;
             cin >> d >> n >> sH >> sM >> eH >> eM;
             if(d >= 1 && d <= 7) fillSchedule(d-1, n, sH, sM, eH, eM);
+        }
+        else if (choice == 4) { // แจ้ง delete งานที่ทำเสร็จแล้ว
+            string n; cout << "ชื่องานที่เสร็จ: "; cin >> n;
+            for(int i=0; i<taskList.size(); i++) if(taskList[i].name == n){ 
+                taskList.erase(taskList.begin()+i); break; }
+        }
+        else if (choice == 5) { // บอกเวลาปัจจุบัน ไว้อัปเดตตาราง
+            cout << "ระบุวัน(1-7) และเวลา(ชม นาที) ณ เวลาปัจจุบัน: ";
+            cin >> currentDay >> currentHour >> currentMinute;
         }
         else if (choice == 0) break;
     }
