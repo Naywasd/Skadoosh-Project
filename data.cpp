@@ -1,4 +1,4 @@
-#include "Data.h"
+#include "data.h"
 
 Day::Day() {
     for(int i=0; i<1440; i++) timeSlots[i] = "Free";
