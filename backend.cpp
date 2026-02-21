@@ -1,10 +1,9 @@
-#include "Backend.h"
-#include "Data.h" // รอไอ่นายเขียน
+#include "backend.h"
+#include "data.h"
 
 int toMinutes(int h, int m) {  // แปลงชมเป็นนาที
     return (h * 60) + m;
 }
-
 
 // คิดตรรกะ
 void fillSchedule(int dIdx, string name, int sH, int sM, int eH, int eM) {
