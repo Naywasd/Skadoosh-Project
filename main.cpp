@@ -9,11 +9,15 @@ int main() {
     for(int i=0; i<rCount; i++) {
         string name; int sH, sM, eH, eM, mode; //ตัวแปรรับเวลาชั่วโมง และ นาทีที่เริ่มรูทีน และวัน
         cout << "\nชื่อกิจกรรม: "; cin >> name;
-        cout << "เริ่ม(ชม นาที) จบ(ชม นาที): "; cin >> sH >> sM >> eH >> eM; //รับเวลาเริ่มรูทีน ชั่วโมง - นาที และจบรูทีน ชั่วโมง - นาที
-        cout << "ระบุเลขวัน (1-7) พิมพ์ 0 เพื่อจบ: ";
+        cout << "เวลาที่เริ่มและจบ(ชม.และนาที)(ex. 6 00 23 59): "; cin >> sH >> sM >> eH >> eM; //รับเวลาเริ่มรูทีน ชั่วโมง - นาที และจบรูทีน ชั่วโมง - นาที
+        cout << "ลงตารางแบบไหน? (1: ทุกวัน, 2: ระบุวัน): "; cin >> mode; // สามารถลงตารางแบบระบุวันหรือทำทุกวันเลยก็ได้
+        if(mode == 1) {
+            for(int d=0; d<7; d++) fillSchedule(d, name, sH, sM, eH, eM);
+        } else {
+            cout << "ระบุเลขวันทั้งหมดที่ต้องการลง (1-7) พิมพ์ 0 เพื่อจบ: ";
             int dTarget;
             while(cin >> dTarget && dTarget != 0) {
-                if(dTarget >= 1 && dTarget <= 7) fillSchedule(dTarget-1, name, sH, sM, eH, eM); //รับข้อมูลว่า รูทีนนี้ ทำในวันไหนบ้าง เช่น 1 = วันจันทร์
+                if(dTarget >= 1 && dTarget <= 7) fillSchedule(dTarget-1, name, sH, sM, eH, eM);
             }
         }
     }
@@ -22,7 +26,7 @@ int main() {
     int tCount; cout << "จำนวนงาน: "; cin >> tCount;
     for(int i=0; i<tCount; i++) {
         Task t; double hours;
-        cout << "ชื่อ ชม.ที่ใช้ วันส่ง เวลาส่ง(ชม นาที): ";
+        cout << "ชื่อ จำนวนชม.ที่คาดว่าจะใช้ วันส่ง เวลาส่ง(ชม นาที)(เว้นวรรค): ";
         cin >> t.name >> hours >> t.deadlineDay >> t.deadlineHour >> t.deadlineMinute; // รับชื่อ เวลา และเดดไลน์ ของงาน
         t.remainingMinutes = (int)(hours * 60); // แปลงชั่วโมงเป็นนาที
         taskList.push_back(t);
@@ -55,7 +59,7 @@ while (true) { // loop ไว้ทำฟังก์ชั่นต่างๆ
                 taskList.erase(taskList.begin()+i); break; }
         }
         else if (choice == 5) { // บอกเวลาปัจจุบัน ไว้อัปเดตตาราง
-            cout << "ระบุวัน(1-7) และเวลา(ชม นาที) ณ เวลาปัจจุบัน: ";
+            cout << "ระบุวัน(1-7) และเวลา(ชม. นาที) ณ เวลาปัจจุบัน: ";
             cin >> currentDay >> currentHour >> currentMinute;
         }
         else if (choice == 0) break;
