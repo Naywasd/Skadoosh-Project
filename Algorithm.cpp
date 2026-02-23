@@ -1,6 +1,6 @@
 #include "Algorithm.h"
-#include "Data.h"
-#include "Backend.h" // ต้องใช้ getNetFreeMinutes
+#include "data.h"
+#include "backend.h" // ต้องใช้ getNetFreeMinutes
 
 void processTaskPriority() {
     for (auto& t : taskList) {
