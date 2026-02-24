@@ -1,8 +1,8 @@
 
-#include "backend.h" // ซอรี่TT
-#include "data.h" // รอไอ่นายเขียน 
+#include "backend.h" 
+#include "data.h"
 
-int toMinutes(int h, int m) { // แปลงชมเด้อ
+int toMinutes(int h, int m) { // แปลงชม
     return (h * 60) + m;
 }
 
