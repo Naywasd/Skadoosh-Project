@@ -26,7 +26,7 @@ int main() {
     int tCount; cout << "จำนวนงาน: "; cin >> tCount;
     for(int i=0; i<tCount; i++) {
         Task t; double hours;
-        cout << "ชื่อ จำนวนชม.ที่คาดว่าจะใช้ วันส่ง เวลาส่ง(ชม นาที)(เว้นวรรค): ";
+        cout << "ชื่อ จำนวนชม.ที่คาดว่าต้องใช้ในการทำ วันส่ง เวลาส่ง(ชม. นาที)(ex. การบ้าน 2 3 23 59) : ";
         cin >> t.name >> hours >> t.deadlineDay >> t.deadlineHour >> t.deadlineMinute; // รับชื่อ เวลา และเดดไลน์ ของงาน
         t.remainingMinutes = (int)(hours * 60); // แปลงชั่วโมงเป็นนาที
         taskList.push_back(t);
@@ -59,7 +59,7 @@ while (true) { // loop ไว้ทำฟังก์ชั่นต่างๆ
                 taskList.erase(taskList.begin()+i); break; }
         }
         else if (choice == 5) { // บอกเวลาปัจจุบัน ไว้อัปเดตตาราง
-            cout << "ระบุวัน(1-7) และเวลา(ชม. นาที) ณ เวลาปัจจุบัน: ";
+            cout << "ระบุวัน(1-7) และเวลา(ชม. นาที) ณ เวลาปัจจุบัน : ";
             cin >> currentDay >> currentHour >> currentMinute;
         }
         else if (choice == 0) break;
