@@ -1,8 +1,8 @@
 
 #include "Backend.h"
-#include "Data.h" // รอไอ่นายเขียน
+#include "data.h" // รอไอ่นายเขียน
 
-int toMinutes(int h, int m) { 
+int toMinutes(int h, int m) { // แปลงชมเด้อ
     return (h * 60) + m;
 }
 
@@ -13,7 +13,7 @@ void fillSchedule(int dIdx, string name, int sH, int sM, int eH, int eM) {
     int end = toMinutes(eH, eM);  // จบรูทีนนนน
    
 if (end < start) { 
-        for(int m = start; m < 1440; m++)   week[dIdx].timeSlots[m] = name;
+        for(int m = start; m < 1440; m++)   week[dIdx].timeSlots[m] = name;   
         for(int m = 0; m <= end; m++)   week[dIdx].timeSlots[m] = name;
         } else {
         for(int m = start; m <= end; m++) week[dIdx].timeSlots[m] = name;
