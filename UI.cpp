@@ -1,6 +1,6 @@
 #include "UI.h"
 #include "data.h"
-//#include "Algorithm.h" // รอไฟล์algorithm
+#include "Algorithm.h" 
 
 void printScheduleTable() {
     cout << "\n--- ตารางเวลาภาพรวม (Overview) ---\n";
