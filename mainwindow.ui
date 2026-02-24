@@ -6,21 +6,420 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1068</width>
+    <height>752</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="tableSchedule">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>931</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <row>
+     <property name="text">
+      <string>00:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>01:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>02:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>03:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>04:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>05:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>06:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>07:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>08:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>09:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>10:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>11:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>12:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>13:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>10:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>15:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>17:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>18:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>19:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>20:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>21:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>22:00</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>23:00</string>
+     </property>
+    </row>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>190</y>
+      <width>181</width>
+      <height>311</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Adtask</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Task name</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="inputTaskName"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Time spent working</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="spinTaskHours"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Deadline day</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinDeadlineDay"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Time deadline</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTimeEdit" name="timeDeadline"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnAddTask">
+       <property name="text">
+        <string>Confirm</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>190</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TO DO LIST</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>500</y>
+      <width>181</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Current Time</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Day</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinCurDay"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>Time</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTimeEdit" name="timeCur"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnUpdateTime">
+       <property name="text">
+        <string>Confirm</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>190</y>
+      <width>181</width>
+      <height>501</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Add Routine/Spacial Event</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>Name Event</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="inputRoutineName"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Time Start</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTimeEdit" name="timeStart"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>Time End</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTimeEdit" name="timeEnd"/>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="cbMon">
+       <property name="text">
+        <string>Monday</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="cbTue">
+       <property name="text">
+        <string>Tuesday</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="cbWed">
+       <property name="text">
+        <string>Wednesday</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="cbThu">
+       <property name="text">
+        <string>Thursday</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="cbFri">
+       <property name="text">
+        <string>Friday</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="cbSat">
+       <property name="text">
+        <string>Saturday</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="cbSun">
+       <property name="text">
+        <string>Sunday</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnAddRoutine">
+       <property name="text">
+        <string>Confirm</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QTableWidget" name="tableToDo">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>210</y>
+      <width>621</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <column>
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Deadline</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Remaining time</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Time required</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Status</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="btnCompleteTask">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>630</y>
+      <width>131</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Complete Task</string>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>23</height>
+     <width>1068</width>
+     <height>25</height>
     </rect>
    </property>
   </widget>
