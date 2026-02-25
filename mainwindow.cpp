@@ -5,6 +5,29 @@
 #include <QTableWidgetItem>
 #include <QCheckBox>
 
+int MainWindow::toMinutes(int h, int m) {
+    return (h * 60) + m;
+}
+
+int MainWindow::getNetFreeMinutes(int dDay, int dHour, int dMinute) {
+    int freeCount = 0;
+    int startMinToday = toMinutes(curHour, curMin);
+    int targetEndMin = toMinutes(dHour, dMinute);
+
+    for (int d = curDay - 1; d < dDay && d < 7; d++) {
+        int mStart = (d == curDay - 1) ? startMinToday : 0;
+        int mEnd = (d == dDay - 1) ? targetEndMin : 1439;
+
+        for (int m = mStart; m <= mEnd; m++) {
+            if (week[d].timeSlots[m] == "Free") {
+                freeCount++;
+            }
+        }
+    }
+    return freeCount;
+}
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
