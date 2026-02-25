@@ -2,12 +2,29 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <vector> 
+#include <QString> 
 
 QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
+namespace Ui { class MainWindow;}
 QT_END_NAMESPACE
+
+struct Task {
+    QString name;
+    int remainingMinutes;
+    int deadlineDay;
+    int deadlineHour;
+    int deadlineMinute;
+    double stressIndex;
+};
+
+struct Day {
+    QString timeSlots[1440];
+    Day() {
+        for(int i=0; i<1440; i++) timeSlots[i] = "Free";
+    }
+};
+
 
 class MainWindow : public QMainWindow
 {
@@ -25,5 +42,13 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    int curDay = 1;
+    int curHour = 0;
+    int curMin = 0;
+
+    int toMinutes(int h, int m);  
+    int getNetFreeMinutes(int dDay, int dHour, int dMinute); 
+
 };
 #endif // MAINWINDOW_H
