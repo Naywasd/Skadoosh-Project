@@ -71,3 +71,32 @@ void MainWindow::on_btnUpdateTime_clicked()
     updateDashboard();
     QMessageBox::information(this, "อัปเดต", "อัปเดตเวลาและคำนวณสถานะงานใหม่เรียบร้อย!");
 }
+
+void MainWindow::on_btnAddRoutine_clicked()
+{
+    QString name = ui->inputRoutineName->text();
+    QTime tStart = ui->timeStart->time();
+    QTime tEnd = ui->timeEnd->time();
+
+    if(name.isEmpty()) return;
+
+    int startM = toMinutes(tStart.hour(), tStart.minute());
+    int endM = toMinutes(tEnd.hour(), tEnd.minute());
+
+    QCheckBox* days[] = {ui->cbMon, ui->cbTue, ui->cbWed, ui->cbThu, ui->cbFri, ui->cbSat, ui->cbSun};
+
+    for(int i=0; i<7; i++) {
+        if(days[i]->isChecked()) {
+            if(endM > startM) {
+                for(int m = startM; m < endM; m++) week[i].timeSlots[m] = name;
+            } else {
+                for(int m = startM; m < 1440; m++) week[i].timeSlots[m] = name;
+                for(int m = 0; m < endM; m++) week[i].timeSlots[m] = name;
+            }
+        }
+    }
+    
+    updateDashboard();
+    ui->inputRoutineName->clear();
+    for(int i=0; i<7; i++) days[i]->setChecked(false);
+}
