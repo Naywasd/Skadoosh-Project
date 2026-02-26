@@ -43,6 +43,10 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+
+    std::vector<Day> week;
+    std::vector<Task> taskList;
+
     int curDay = 1;
     int curHour = 0;
     int curMin = 0;
