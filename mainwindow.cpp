@@ -60,3 +60,14 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_btnUpdateTime_clicked()
+{
+    curDay = ui->spinCurDay->value();
+    QTime t = ui->timeCur->time();
+    curHour = t.hour();
+    curMin = t.minute();
+
+    updateDashboard();
+    QMessageBox::information(this, "อัปเดต", "อัปเดตเวลาและคำนวณสถานะงานใหม่เรียบร้อย!");
+}
