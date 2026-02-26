@@ -49,6 +49,6 @@ private:
 
     int toMinutes(int h, int m);  
     int getNetFreeMinutes(int dDay, int dHour, int dMinute); 
-
+    void updateDashboard();
 };
 #endif // MAINWINDOW_H
