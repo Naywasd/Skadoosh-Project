@@ -95,8 +95,24 @@ void MainWindow::on_btnAddRoutine_clicked()
             }
         }
     }
+
+
     
     updateDashboard();
     ui->inputRoutineName->clear();
     for(int i=0; i<7; i++) days[i]->setChecked(false);
+}
+
+
+void MainWindow::on_btnCompleteTask_clicked()
+{
+    int row = ui->tableToDo->currentRow();
+    if(row >= 0 && row < taskList.size()) {
+        QString taskName = ui->tableToDo->item(row, 0)->text();
+        taskList.erase(taskList.begin() + row);
+        updateDashboard();
+        QMessageBox::information(this, "สำเร็จ", "เยี่ยมมาก! งาน '" + taskName + "' เสร็จเรียบร้อย");
+    } else {
+        QMessageBox::warning(this, "เตือน", "กรุณาคลิกเลือกงานในตารางก่อนกดปุ่มนี้");
+    }
 }
