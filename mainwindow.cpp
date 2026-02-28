@@ -103,6 +103,33 @@ void MainWindow::on_btnAddRoutine_clicked()
     for(int i=0; i<7; i++) days[i]->setChecked(false);
 }
 
+void MainWindow::on_btnAddTask_clicked()
+{
+    QString name = ui->inputTaskName->text();
+    double hours = ui->spinTaskHours->value();
+    int dDay = ui->spinDeadlineDay->value();
+    QTime dTime = ui->timeDeadline->time();
+
+    if(name.isEmpty()) {
+        QMessageBox::warning(this, "เตือน", "กรุณาใส่ชื่องาน!");
+        return;
+    }
+    Task t;
+    t.name = name;
+    t.remainingMinutes = (int)(hours * 60);
+    t.deadlineDay = dDay;
+    t.deadlineHour = dTime.hour();
+    t.deadlineMinute = dTime.minute();
+    t.stressIndex = 0.0;
+
+    taskList.push_back(t);
+
+    updateDashboard();
+
+    ui->inputTaskName->clear();
+    ui->spinTaskHours->setValue(1.0);
+}
+
 
 void MainWindow::on_btnCompleteTask_clicked()
 {
