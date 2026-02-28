@@ -143,3 +143,26 @@ void MainWindow::on_btnCompleteTask_clicked()
         QMessageBox::warning(this, "เตือน", "กรุณาคลิกเลือกงานในตารางก่อนกดปุ่มนี้");
     }
 }
+
+void MainWindow::refreshScheduleTable() {
+    for(int h=0; h<24; h++) {
+        for(int d=0; d<7; d++) {
+            int checkMin = (h * 60) + 30;
+            QString status = week[d].timeSlots[checkMin];
+
+            QTableWidgetItem *item = new QTableWidgetItem();
+            item->setTextAlignment(Qt::AlignCenter);
+
+            if(status == "Free") {
+                item->setText("-");
+                item->setBackground(Qt::white);
+            } else {
+                item->setText(status);
+                if(status.contains("นอน") || status.contains("Sleep")) item->setBackground(QColor(200, 200, 200));
+                else if(status.contains("เรียน") || status.contains("Study")) item->setBackground(QColor(173, 216, 230));
+                else item->setBackground(QColor(255, 228, 196));
+            }
+            ui->tableSchedule->setItem(h, d, item);
+        }
+    }
+}
