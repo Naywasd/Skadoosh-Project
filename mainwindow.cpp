@@ -144,6 +144,19 @@ void MainWindow::on_btnCompleteTask_clicked()
     }
 }
 
+void MainWindow::updateDashboard() {
+    for (auto& t : taskList) {
+        int free = getNetFreeMinutes(t.deadlineDay, t.deadlineHour, t.deadlineMinute);
+        t.stressIndex = (free <= 0) ? 999.0 : (double)t.remainingMinutes / free;
+    }
+    
+    std::sort(taskList.begin(), taskList.end(), [](const Task& a, const Task& b) {
+        return a.stressIndex > b.stressIndex;
+    });
+
+    refreshScheduleTable();
+    refreshToDoTable();
+
 void MainWindow::refreshScheduleTable() {
     for(int h=0; h<24; h++) {
         for(int d=0; d<7; d++) {
