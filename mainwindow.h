@@ -55,5 +55,6 @@ private:
     int getNetFreeMinutes(int dDay, int dHour, int dMinute); 
     void updateDashboard();
     void refreshScheduleTable();
+    void refreshToDoTable();
 };
 #endif // MAINWINDOW_H
