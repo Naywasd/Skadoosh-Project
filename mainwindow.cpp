@@ -179,3 +179,35 @@ void MainWindow::refreshScheduleTable() {
         }
     }
 }
+
+void MainWindow::refreshToDoTable() {
+    ui->tableToDo->setRowCount(0);
+
+    for(const auto& t : taskList) {
+        int row = ui->tableToDo->rowCount();
+        ui->tableToDo->insertRow(row);
+
+        double freeHrs = getNetFreeMinutes(t.deadlineDay, t.deadlineHour, t.deadlineMinute) / 60.0;
+        double needHrs = t.remainingMinutes / 60.0;
+
+        QString deadlineStr = "D" + QString::number(t.deadlineDay) + " " +
+                              QString("%1:%2").arg(t.deadlineHour, 2, 10, QChar('0')).arg(t.deadlineMinute, 2, 10, QChar('0'));
+
+        QString statusStr;
+        QColor statusColor;
+
+        if (t.stressIndex > 1.0) { statusStr = "CRITICAL"; statusColor = QColor(255, 100, 100); }
+        else if (t.stressIndex > 0.7) { statusStr = "Urgent"; statusColor = QColor(255, 160, 122); }
+        else if (t.stressIndex > 0.4) { statusStr = "Warning"; statusColor = QColor(255, 255, 153); }
+        else { statusStr = "Chill"; statusColor = QColor(144, 238, 144); } // เขียว
+
+        ui->tableToDo->setItem(row, 0, new QTableWidgetItem(t.name));
+        ui->tableToDo->setItem(row, 1, new QTableWidgetItem(deadlineStr));
+        ui->tableToDo->setItem(row, 2, new QTableWidgetItem(QString::number(freeHrs, 'f', 1)));
+        ui->tableToDo->setItem(row, 3, new QTableWidgetItem(QString::number(needHrs, 'f', 1)));
+
+        QTableWidgetItem *statusItem = new QTableWidgetItem(statusStr);
+        statusItem->setBackground(statusColor);
+        ui->tableToDo->setItem(row, 4, statusItem);
+    }
+}
