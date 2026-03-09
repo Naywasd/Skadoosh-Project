@@ -27,13 +27,12 @@ int MainWindow::getNetFreeMinutes(int dDay, int dHour, int dMinute) {
     return freeCount;
 }
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    
+
     week.resize(7);
 
     ui->tableSchedule->setRowCount(24);
@@ -96,8 +95,6 @@ void MainWindow::on_btnAddRoutine_clicked()
         }
     }
 
-
-    
     updateDashboard();
     ui->inputRoutineName->clear();
     for(int i=0; i<7; i++) days[i]->setChecked(false);
@@ -114,6 +111,7 @@ void MainWindow::on_btnAddTask_clicked()
         QMessageBox::warning(this, "เตือน", "กรุณาใส่ชื่องาน!");
         return;
     }
+
     Task t;
     t.name = name;
     t.remainingMinutes = (int)(hours * 60);
@@ -130,13 +128,14 @@ void MainWindow::on_btnAddTask_clicked()
     ui->spinTaskHours->setValue(1.0);
 }
 
-
 void MainWindow::on_btnCompleteTask_clicked()
 {
     int row = ui->tableToDo->currentRow();
     if(row >= 0 && row < taskList.size()) {
         QString taskName = ui->tableToDo->item(row, 0)->text();
+
         taskList.erase(taskList.begin() + row);
+
         updateDashboard();
         QMessageBox::information(this, "สำเร็จ", "เยี่ยมมาก! งาน '" + taskName + "' เสร็จเรียบร้อย");
     } else {
@@ -144,18 +143,20 @@ void MainWindow::on_btnCompleteTask_clicked()
     }
 }
 
+
 void MainWindow::updateDashboard() {
     for (auto& t : taskList) {
         int free = getNetFreeMinutes(t.deadlineDay, t.deadlineHour, t.deadlineMinute);
         t.stressIndex = (free <= 0) ? 999.0 : (double)t.remainingMinutes / free;
     }
-    
+
     std::sort(taskList.begin(), taskList.end(), [](const Task& a, const Task& b) {
         return a.stressIndex > b.stressIndex;
     });
 
     refreshScheduleTable();
     refreshToDoTable();
+}
 
 void MainWindow::refreshScheduleTable() {
     for(int h=0; h<24; h++) {
@@ -196,9 +197,9 @@ void MainWindow::refreshToDoTable() {
         QString statusStr;
         QColor statusColor;
 
-        if (t.stressIndex > 1.0) { statusStr = "CRITICAL"; statusColor = QColor(255, 100, 100); }
-        else if (t.stressIndex > 0.7) { statusStr = "Urgent"; statusColor = QColor(255, 160, 122); }
-        else if (t.stressIndex > 0.4) { statusStr = "Warning"; statusColor = QColor(255, 255, 153); }
+        if (t.stressIndex > 1.0) { statusStr = "CRITICAL"; statusColor = QColor(255, 100, 100); } // แดงเข้ม
+        else if (t.stressIndex > 0.7) { statusStr = "Urgent"; statusColor = QColor(255, 160, 122); } // ส้มแดง
+        else if (t.stressIndex > 0.4) { statusStr = "Warning"; statusColor = QColor(255, 255, 153); } // เหลือง
         else { statusStr = "Chill"; statusColor = QColor(144, 238, 144); } // เขียว
 
         ui->tableToDo->setItem(row, 0, new QTableWidgetItem(t.name));
@@ -209,5 +210,34 @@ void MainWindow::refreshToDoTable() {
         QTableWidgetItem *statusItem = new QTableWidgetItem(statusStr);
         statusItem->setBackground(statusColor);
         ui->tableToDo->setItem(row, 4, statusItem);
+    }
+}
+
+void MainWindow::on_btnClearRoutine_clicked()
+{
+    QString nameToRemove = ui->RemovedRoutineName->text();
+
+    if(nameToRemove.isEmpty()) {
+        QMessageBox::warning(this, "เตือน", "กรุณาพิมพ์ชื่อกิจกรรมที่ต้องการลบในช่อง 'ชื่อกิจกรรม'");
+        return;
+    }
+
+    int clearedMinutes = 0;
+
+    for(int d = 0; d < 7; d++) {
+        for(int m = 0; m < 1440; m++) {
+            if(week[d].timeSlots[m] == nameToRemove) {
+                week[d].timeSlots[m] = "Free";
+                clearedMinutes++;
+            }
+        }
+    }
+
+    if(clearedMinutes > 0) {
+        updateDashboard();
+        QMessageBox::information(this, "สำเร็จ", "ลบกิจกรรม '" + nameToRemove + "' ออกจากตารางเรียบร้อยแล้ว");
+        ui->inputRoutineName->clear();
+    } else {
+        QMessageBox::information(this, "ไม่พบข้อมูล", "ไม่พบกิจกรรมชื่อ '" + nameToRemove + "' ในตาราง ตรวจสอบข้อมูลใหม่อีกครั้ง");
     }
 }

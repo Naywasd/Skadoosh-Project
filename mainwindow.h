@@ -2,11 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <vector> 
-#include <QString> 
+#include <vector>
+#include <QString>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow;}
+namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 struct Task {
@@ -25,7 +25,6 @@ struct Day {
     }
 };
 
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -39,10 +38,10 @@ private slots:
     void on_btnAddRoutine_clicked();
     void on_btnAddTask_clicked();
     void on_btnCompleteTask_clicked();
+    void on_btnClearRoutine_clicked();
 
 private:
     Ui::MainWindow *ui;
-
 
     std::vector<Day> week;
     std::vector<Task> taskList;
@@ -51,10 +50,11 @@ private:
     int curHour = 0;
     int curMin = 0;
 
-    int toMinutes(int h, int m);  
-    int getNetFreeMinutes(int dDay, int dHour, int dMinute); 
+    int toMinutes(int h, int m);
+    int getNetFreeMinutes(int dDay, int dHour, int dMinute);
     void updateDashboard();
     void refreshScheduleTable();
     void refreshToDoTable();
 };
+
 #endif // MAINWINDOW_H
