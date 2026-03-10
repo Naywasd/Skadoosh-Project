@@ -44,14 +44,16 @@ while (true) { // loop ไว้ทำฟังก์ชั่นต่างๆ
         }
         else if (choice == 2) { //เพิ่มงานใหม่
             Task t; double h;
+            cout << "ชื่อ / ชม.ที่ใช้ / วันที่ส่ง / เวลาที่ส่ง(ชม นาที): ";
             cin >> t.name >> h >> t.deadlineDay >> t.deadlineHour >> t.deadlineMinute;
             t.remainingMinutes = h * 60;
             taskList.push_back(t);
         }
         else if (choice == 3) { //เพิ่มธุระใหม่
-            string n; int d, sH, sM, eH, eM;
-            cin >> d >> n >> sH >> sM >> eH >> eM;
-            if(d >= 1 && d <= 7) fillSchedule(d-1, n, sH, sM, eH, eM);
+            string name; int d, sH, sM, eH, eM;
+            cout << "วัน(1-7) / ชื่อธุระ / เริ่ม(ชม นาที) / จบ(ชม นาที): ";
+            cin >> d >> name >> sH >> sM >> eH >> eM;
+            if(d >= 1 && d <= 7) fillSchedule(d-1, name, sH, sM, eH, eM);
         }
         else if (choice == 4) { // แจ้ง delete งานที่ทำเสร็จแล้ว
             string n; cout << "ชื่องานที่เสร็จ: "; cin >> n;
